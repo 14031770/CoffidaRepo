@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, StyleSheet, Button, Text, TextInput, TouchableOpacity } from 'react-native';
+import {View, StyleSheet, Button, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 Import LoginPage from './components/LoginPage.js';
 
 
@@ -15,24 +15,80 @@ this.state = {
 }
 render(){
   return(
-    //scrollview
+    <View>
+//scrollview
+      <ScrollView>
+      //title
+      <Text style = {styles.titleStyle}> Create an account</Text>
 
-    //title
+      //form for email
+      <View style = {styles.formItemStyle}>
+      <Text style = {styles.formLabelStyle}> Email: </Text>
+      <TextInput
+        placeholder = "Enter email"
+        style = {styles.formInputStyle}
+        onChangeText = {(email) =>this.setState({email})}
+        value={this.state.email}
+        />
+      </View>
 
-    //form for email
+      //form for PassWord
+      <View style = {styles.formItemStyle}>
+      <Text style = {styles.formLabelStyle}> Password: </Text>
+      <TextInput
+        placeholder = "Choose password"
+        style = {styles.formInputStyle}
+        onChangeText = {(password) =>this.setState({password})}
+        value={this.state.password}
+        />
+      </View>
 
-    //form for PassWord
+      //form for password repeat
 
-    //form for password repeat
+      //form for firstName
+      <View style = {styles.formItemStyle}>
+      <Text style = {styles.formLabelStyle}> First Name: </Text>
+      <TextInput
+        placeholder = "Enter first name"
+        style = {styles.formInputStyle}
+        onChangeText = {(firstName) =>this.setState({firstName})}
+        value={this.state.firstName}
+        />
+      </View>
 
-    //form for firstName
-
-    //foprm for lastname
-
+      //foprm for lastname
+      <View style = {styles.formItemStyle}>
+      <Text style = {styles.formLabelStyle}> Surname: </Text>
+      <TextInput
+        placeholder = "Enter last name"
+        style = {styles.formInputStyle}
+        onChangeText = {(lastName) =>this.setState({lastName})}
+        value={this.state.lastName}
+        />
+      </View>
+      <View>
+      <Button
+      title = "Register"
+      color="#f194ff"
+      onPress={register}
+      />
+      </View>
+      </ScrollView>
+    </View>
 
   );
 }
+
+function register() {
+  //contact database and register with this.state..... information from user
+
+  //redirect to login page - maybe with callback/wait here
+  return(
+    <LoginPage />
+  );
 }
+}
+
 
 
 const styles = StyleSheet.create({

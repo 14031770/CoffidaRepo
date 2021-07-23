@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {View, StyleSheet, Button, Text, TextInput, TouchableOpacity } from 'react-native';
 Import RegistrationPage from './components/RegistrationPage.js';
+Import MainPage from './components/MainPage.js';
 
 
 class LoginPage extends Component{
@@ -20,7 +21,7 @@ this.state = {
         <Text style = {styles.titleStyle}> -Coffida- </Text>
         //form for Login name
         <View style = {styles.formItemStyle}>
-        <Text style = {styles.formLabelStyle}> Login Name: </Text>
+        <Text style = {styles.formLabelStyle}> Login Email: </Text>
         <TextInput
           placeholder = "Enter Login name"
           style = {styles.formInputStyle}
@@ -53,8 +54,18 @@ this.state = {
     );
   }
 
-    function attemptLogin() {
+  function attemptLogin() {
+    let attemptSuccess = false;
     //contact database with this.state.loginName and this.state.password
+
+
+    //get password from database and compare to input (this.state.password) and alter attemptSuccess
+    //return session token and user id
+    if(attemptSuccess){
+      return(
+        <MainPage />
+      );
+    }
   }
   function registrationLink() {
   //nagivate to RegistrationPage CHECK THIS IS CORRECT
