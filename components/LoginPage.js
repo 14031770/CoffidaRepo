@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {View, StyleSheet, Button } from 'react-native';
+import {View, StyleSheet, Button, Text, TextInput, TouchableOpacity } from 'react-native';
+Import RegistrationPage from './components/RegistrationPage.js';
 
 
 class LoginPage extends Component{
@@ -37,9 +38,31 @@ this.state = {
           value={this.state.password}
           />
         </View>
+        <View>
+          <Button
+          title = "Log in"
+          onPress={attemptLogin}
+          />
+          <Button
+          title = "Register"
+          color="#f194ff"
+          onPress={registrationLink}
+          />
+          </View>
       </View>
     );
   }
+
+    function attemptLogin() {
+    //contact database with this.state.loginName and this.state.password
+  }
+  function registrationLink() {
+  //nagivate to RegistrationPage CHECK THIS IS CORRECT
+  return(
+    <RegistrationPage />
+  );
+}
+
 }
 
 const styles = StyleSheet.create({
@@ -78,7 +101,11 @@ const styles = StyleSheet.create({
   },
   buttonStyle:{
     flex:1,
-    marginTop: 10
+    marginTop: 10,
+    padding: 10,
+    fontSize: 15,
+    borderRadius: 5,
+    borderColor:"#a7eaaa"
   }
 //formLabel
   //formtouch
