@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import React, { Component } from 'react';
 import {View, StyleSheet, Button, Text } from 'react-native';
 
@@ -7,6 +8,10 @@ class MainPage extends Component{
 }
 
   render(){
+
+    const navigation = this.props.navigation;
+
+
     return(
       <View style = {styles.pageViewStyle}>
 

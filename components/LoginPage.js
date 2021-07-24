@@ -1,8 +1,6 @@
+import 'react-native-gesture-handler';
 import React, { Component } from 'react';
 import {View, StyleSheet, Button, Text, TextInput, TouchableOpacity } from 'react-native';
-Import RegistrationPage from './components/RegistrationPage.js';
-Import MainPage from './components/MainPage.js';
-
 
 class LoginPage extends Component{
   constructor(props){
@@ -14,6 +12,9 @@ this.state = {
 }
 {/* */}
   render(){
+
+    const navigation = this.props.navigation;
+
     return(
       {/* //page view with colour*/}
       <View style = {styles.pageViewStyle}>
@@ -48,7 +49,7 @@ this.state = {
           <Button
           title = "Register"
           color="#f194ff"
-          onPress={registrationLink}
+          onPress={() => navigation.navigate('RegistrationPage')}
           />
           </View>
       </View>
@@ -63,16 +64,9 @@ this.state = {
     {/* //get password from database and compare to input (this.state.password) and alter attemptSuccess
     //return session token and user id*/}
     if(attemptSuccess){
-      return(
-        <MainPage />
-      );
+      navigation.navigate('MainPage');
     }
   }
-  function registrationLink() {
-  {/* //nagivate to RegistrationPage CHECK THIS IS CORRECT*/}
-  return(
-    <RegistrationPage />
-  );
 }
 
 }

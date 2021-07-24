@@ -1,7 +1,6 @@
+import 'react-native-gesture-handler';
 import React, { Component } from 'react';
 import {View, StyleSheet, Button, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
-Import LoginPage from './components/LoginPage.js';
-
 
 class RegistrationPage extends Component{
   constructor(props){
@@ -14,6 +13,9 @@ this.state = {
   }
 }
 render(){
+
+  const navigation = this.props.navigation;
+
   return(
     <View style = {styles.pageViewStyle}>
     {/* scrollview*/}
@@ -84,7 +86,7 @@ function register() {
 
   //redirect to login page - maybe with callback/wait here
   return(
-    <LoginPage />
+    onPress={() => navigation.navigate('LoginPage')}
   );
 }
 }
