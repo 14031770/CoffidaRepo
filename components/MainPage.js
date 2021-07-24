@@ -8,9 +8,9 @@ class MainPage extends Component{
 
   render(){
     return(
-      
+      <View style = {styles.pageViewStyle}>
 
-
+      </View>
     );
   }
 }
@@ -43,13 +43,13 @@ const styles = StyleSheet.create({
   },
   formLabelStyle:{
     fontSize: 15,
-    color: "#20232a"
+    color: "#20232a",
   },
   formInputStyle:{
     flex:1,
     borderWidth:1,
     borderColor:"#38733b",
-    borderRadius: 6
+    borderRadius: 6,
   },
   buttonStyle:{
     flex:1,
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 15,
     borderRadius: 5,
-    borderColor:"#a7eaaa"
+    borderColor:"#a7eaaa",
   }
 //formLabel
   //formtouch

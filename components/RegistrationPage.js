@@ -15,13 +15,13 @@ this.state = {
 }
 render(){
   return(
-    <View>
-//scrollview
+    <View style = {styles.pageViewStyle}>
+    {/* scrollview*/}
       <ScrollView>
-      //title
+      {/* title*/}
       <Text style = {styles.titleStyle}> Create an account</Text>
 
-      //form for email
+      {/* form for email*/}
       <View style = {styles.formItemStyle}>
       <Text style = {styles.formLabelStyle}> Email: </Text>
       <TextInput
@@ -32,7 +32,7 @@ render(){
         />
       </View>
 
-      //form for PassWord
+      {/* form for PassWord*/}
       <View style = {styles.formItemStyle}>
       <Text style = {styles.formLabelStyle}> Password: </Text>
       <TextInput
@@ -43,9 +43,9 @@ render(){
         />
       </View>
 
-      //form for password repeat
+      {/* form for password repeat*/}
 
-      //form for firstName
+      {/* form for firstName*/}
       <View style = {styles.formItemStyle}>
       <Text style = {styles.formLabelStyle}> First Name: </Text>
       <TextInput
@@ -56,7 +56,7 @@ render(){
         />
       </View>
 
-      //foprm for lastname
+      {/* form for lastname*/}
       <View style = {styles.formItemStyle}>
       <Text style = {styles.formLabelStyle}> Surname: </Text>
       <TextInput
@@ -80,7 +80,7 @@ render(){
 }
 
 function register() {
-  //contact database and register with this.state..... information from user
+//contact database and register with this.state..... information from user
 
   //redirect to login page - maybe with callback/wait here
   return(
@@ -94,7 +94,8 @@ function register() {
 const styles = StyleSheet.create({
   pageViewStyle: {
     flex: 1,
-    backgroundColor: "#27704c"
+    backgroundColor: "#27704c",
+    alignItems: 'stretch'
   },
   imageStyle:{
     flex: 1
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
   },
   formLabelStyle:{
     fontSize: 15,
-    color: "#20232a"
+    color: "#20232a",
   },
   formInputStyle:{
     flex:1,
@@ -131,8 +132,10 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 15,
     borderRadius: 5,
-    borderColor:"#a7eaaa"
+    borderColor:"#a7eaaa",
+    justifyContent: 'flex-end',
   }
+})
 
 
 export default LoginPage;

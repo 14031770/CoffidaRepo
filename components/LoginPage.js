@@ -12,14 +12,14 @@ this.state = {
   password: ''
   }
 }
-
+{/* */}
   render(){
     return(
-      //page view with colour
+      {/* //page view with colour*/}
       <View style = {styles.pageViewStyle}>
-      //title
+      {/* //title*/}
         <Text style = {styles.titleStyle}> -Coffida- </Text>
-        //form for Login name
+        {/* //form for Login name*/}
         <View style = {styles.formItemStyle}>
         <Text style = {styles.formLabelStyle}> Login Email: </Text>
         <TextInput
@@ -29,11 +29,12 @@ this.state = {
           value={this.state.loginName}
           />
         </View>
-      //form for password
+      {/* //form for password*/}
         <View style = {styles.formItemStyle}>
-        <Text style = {styles.formLabelStyle}> PassWord: </Text>
+        <Text style = {styles.formLabelStyle}> Password: </Text>
         <TextInput
           placeholder = "Enter Password"
+
           style = {styles.formInputStyle}
           onChangeText = {(password) =>this.setState({password})}
           value={this.state.password}
@@ -56,11 +57,11 @@ this.state = {
 
   function attemptLogin() {
     let attemptSuccess = false;
-    //contact database with this.state.loginName and this.state.password
+    {/* //contact database with this.state.loginName and this.state.password*/}
 
 
-    //get password from database and compare to input (this.state.password) and alter attemptSuccess
-    //return session token and user id
+    {/* //get password from database and compare to input (this.state.password) and alter attemptSuccess
+    //return session token and user id*/}
     if(attemptSuccess){
       return(
         <MainPage />
@@ -68,7 +69,7 @@ this.state = {
     }
   }
   function registrationLink() {
-  //nagivate to RegistrationPage CHECK THIS IS CORRECT
+  {/* //nagivate to RegistrationPage CHECK THIS IS CORRECT*/}
   return(
     <RegistrationPage />
   );
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   titleStyle:{
-    flex: 1,
+    flex: 0.2,
     paddingVertical: 8,
     marginTop: 16,
     borderWidth: 4,
@@ -95,14 +96,15 @@ const styles = StyleSheet.create({
     color: "#20232a",
     textAlign: "center",
     fontSize: 30,
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   formItemStyle:{
+    flex: 1
     padding:10
   },
   formLabelStyle:{
     fontSize: 15,
-    color: "#20232a"
+    color: "#20232a",
   },
   formInputStyle:{
     flex:1,
@@ -111,12 +113,13 @@ const styles = StyleSheet.create({
     borderRadius: 6
   },
   buttonStyle:{
-    flex:1,
+    flex:0.5,
     marginTop: 10,
     padding: 10,
     fontSize: 15,
     borderRadius: 5,
-    borderColor:"#a7eaaa"
+    borderColor:"#a7eaaa",
+    backgroundColor: "powderblue",
   }
 //formLabel
   //formtouch
