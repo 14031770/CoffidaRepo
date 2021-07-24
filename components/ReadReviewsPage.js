@@ -1,20 +1,40 @@
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
-import {View, StyleSheet, Button, Text } from 'react-native';
-
-
-//use Flatlist
-
+import {FlatList, View, StyleSheet, Button, Text } from 'react-native';
 
 class ReadReviewPage extends Component{
   constructor(props){
     super(props);
+    this.state = {
+      locationFilter: '',
+      userFilter: ''
+      }
 }
-
   render(){
     return(
+      <View style = {styles.pageViewStyle}>
+      {/*location filter*/}
+      <TextInput
+        placeholder = "Filter by location"
+        style = {styles.formInputStyle}
+        onChangeText = {(locationFilter) =>this.setState({locationFilter})}
+        value={this.state.locationFilter}
+        />
+      {/*user filter*/}
+      <TextInput
+        placeholder = "Filter by user"
+        style = {styles.formInputStyle}
+        onChangeText = {(userFilter) =>this.setState({userFilter})}
+        value={this.state.userFilter}
+        />
+
+      {/*display filtered list here based on location and user filter*/}
+      <FlatList>
+        
 
 
+      </FlatList>
+      </View>
     )
   }
 }

@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
-import {View, StyleSheet, Button, Text, Picker } from 'react-native';
+import {View, StyleSheet,ScrollView, Button, Text } from 'react-native';
 
 class WriteReviewPage extends Component{
   constructor(props){
@@ -27,33 +27,33 @@ class WriteReviewPage extends Component{
           placeholder = "Overall Rating"
           style = {styles.formInputStyle}
           onChangeText = {(overallRating) =>this.setState({overallRating})}
-          value={this.state.email}
+          value={this.state.overallRating}
           />
-        </View>
+
         {/*price rating */}
         <TextInput
           placeholder = "Price Rating"
           style = {styles.formInputStyle}
           onChangeText = {(priceRating) =>this.setState({priceRating})}
-          value={this.state.email}
+          value={this.state.priceRating}
           />
-        </View>
+
         {/*quality rating */}
         <TextInput
           placeholder = "Quality Rating"
           style = {styles.formInputStyle}
           onChangeText = {(qualityRating) =>this.setState({qualityRating})}
-          value={this.state.email}
+          value={this.state.qualityRating}
           />
-        </View>
+
         {/*clenliness rating */}
         <TextInput
           placeholder = "Cleanliness Rating"
           style = {styles.formInputStyle}
           onChangeText = {(cleanliness) =>this.setState({cleanliness})}
-          value={this.state.email}
+          value={this.state.cleanliness}
           />
-        </View>
+
         {/*picture submission */}
 
         {/*upload button */}
@@ -74,7 +74,7 @@ class WriteReviewPage extends Component{
   }
 
   function uploadReview() {
-    //uploadreviewt to server and then send to Main menu - could send to my read review page and send my name as filter
+    //upload review to server and then send to Main menu - could send to my read review page and send my name as filter
 
     navigation.navigate('MainPage')
   }
