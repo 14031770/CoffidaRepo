@@ -96,14 +96,13 @@ function register() {
 const styles = StyleSheet.create({
   pageViewStyle: {
     flex: 1,
-    backgroundColor: "#27704c",
-    alignItems: 'stretch'
+    backgroundColor: "#27704c"
   },
   imageStyle:{
     flex: 1
   },
   titleStyle:{
-    flex: 1,
+    flex: 0.2,
     paddingVertical: 8,
     marginTop: 16,
     borderWidth: 4,
@@ -113,9 +112,10 @@ const styles = StyleSheet.create({
     color: "#20232a",
     textAlign: "center",
     fontSize: 30,
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   formItemStyle:{
+    flex: 1
     padding:10
   },
   formLabelStyle:{
@@ -129,15 +129,15 @@ const styles = StyleSheet.create({
     borderRadius: 6
   },
   buttonStyle:{
-    flex:1,
+    flex:0.5,
     marginTop: 10,
     padding: 10,
     fontSize: 15,
     borderRadius: 5,
     borderColor:"#a7eaaa",
-    justifyContent: 'flex-end',
+    backgroundColor: "powderblue",
   }
 })
 
 
-export default LoginPage;
+export default RegistrationPage;

@@ -5,6 +5,11 @@ import {View, StyleSheet, Button, Text } from 'react-native';
 class MainPage extends Component{
   constructor(props){
     super(props);
+    this.state = {
+      //form items here
+
+
+      }
 }
 
   render(){
@@ -14,13 +19,38 @@ class MainPage extends Component{
 
     return(
       <View style = {styles.pageViewStyle}>
+      <Text
 
+      {/* button to write review page*/}
+      <Button
+      title = "Post new review"
+      color="#488dcd"
+      onPress={() => navigation.navigate('WriteReviewPage')}
+      />
+      {/* button to read reviews */}
+      <Button
+      title = "Read reviews"
+      color="#4075a5"
+      onPress={() => navigation.navigate('ReadReviewPage') }
+      />
+      {/* button to see my reviews? - do this by sending my name as filter to ReadReviewPage */}
+      {/* button to logout */}
+      <Button
+      title = "Logout"
+      color="#31597e"
+      onPress={logOut}
+      />
       </View>
     );
   }
+
+
+  function logOut() {
+    //logout of session and return to login screen
+
+    navigation.popToTop();
+  }
 }
-
-
 
 const styles = StyleSheet.create({
   pageViewStyle: {
@@ -63,10 +93,14 @@ const styles = StyleSheet.create({
     fontSize: 15,
     borderRadius: 5,
     borderColor:"#a7eaaa",
+  },
+  textStyle:{
+    color:'white',
+    fontSize: 27
   }
 //formLabel
   //formtouch
   //formtouch text
 })
 
-export default LoginPage;
+export default MainPage;
