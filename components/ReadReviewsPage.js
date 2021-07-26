@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React, { Component } from 'react';
 import {FlatList, View, StyleSheet, Button, Text } from 'react-native';
 
-class ReadReviewPage extends Component{
+export default class ReadReviewPage extends Component{
   constructor(props){
     super(props);
     this.state = {
@@ -91,4 +91,3 @@ const styles = StyleSheet.create({
 })
 
 
-export default ReadReviewPage;

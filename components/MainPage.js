@@ -1,8 +1,9 @@
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
-import {View, StyleSheet, Button, Text } from 'react-native';
+import {View, StyleSheet, Button, Text, Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-class MainPage extends Component{
+export default class MainPage extends Component{
   constructor(props){
     super(props);
     this.state = {
@@ -10,8 +11,16 @@ class MainPage extends Component{
 
 
       }
+
 }
 
+  
+  async validateUser(){
+    const navigation = this.props.navigation;
+    if (await AsyncStorage.getItem("@session_token") == null){
+      Alert.alert("session EXPIRED","Please login again" )
+    }
+  }  
   render(){
 
     const navigation = this.props.navigation;
@@ -19,9 +28,7 @@ class MainPage extends Component{
 
     return(
       <View style = {styles.pageViewStyle}>
-      <Text
 
-      {/* button to write review page*/}
       <Button
       title = "Post new review"
       color="#488dcd"
@@ -38,19 +45,36 @@ class MainPage extends Component{
       <Button
       title = "Logout"
       color="#31597e"
-      onPress={logOut}
+      onPress={()=>{this.logOut()}}
       />
       </View>
     );
   }
 
 
-  function logOut() {
+  async logOut() {
+    console.log("logout attempted")
+    const navigation = this.props.navigation
     //logout of session and return to login screen
+    return fetch("http://10.0.2.2:3333/api/1.0.0/user/logout",{
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "X-Authorization": await AsyncStorage.getItem("@session_token")    
+      },
+    })
+    .then((response) => {
+      if (response.status === 200){
+        console.log("logout success")
+        Alert.alert("Logged out!")
+        AsyncStorage.clear()
+        navigation.navigate("LoginPage"); 
 
-    navigation.popToTop();
+      }
+    })
   }
 }
+
 
 const styles = StyleSheet.create({
   pageViewStyle: {
@@ -102,5 +126,3 @@ const styles = StyleSheet.create({
   //formtouch
   //formtouch text
 })
-
-export default MainPage;

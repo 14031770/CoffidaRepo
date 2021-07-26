@@ -2,14 +2,15 @@ import 'react-native-gesture-handler';
 import React, { Component } from 'react';
 import {View, StyleSheet,ScrollView, Button, Text } from 'react-native';
 
-class WriteReviewPage extends Component{
+export default class WriteReviewPage extends Component{
   constructor(props){
     super(props);
     this.state = {
       overallRating: '',
       priceRating: '',
       qualityRating: '',
-      cleanliness: ''
+      cleanliness: '',
+      review_body: ''
       }
 }
 
@@ -73,10 +74,17 @@ class WriteReviewPage extends Component{
     )
   }
 
-  function uploadReview() {
+  uploadReview() {
     //upload review to server and then send to Main menu - could send to my read review page and send my name as filter
+/*
+    let overallRating = this.state.overallRating,
+    let priceRating = this.state.priceRating,
+    let qualityRating = this.state.qualityRating,
+    let cleanliness = this.state.cleanliness,
+    let review_body = this.state.review_body
 
-    navigation.navigate('MainPage')
+
+    navigation.navigate('MainPage') */
   }
 }
 
@@ -132,4 +140,3 @@ const styles = StyleSheet.create({
 })
 
 
-export default WriteReviewPage;

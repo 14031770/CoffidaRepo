@@ -1,15 +1,15 @@
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
-import {View, StyleSheet, Button, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import {View, StyleSheet, Button, Text, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native';
 
-class RegistrationPage extends Component{
+export default class RegistrationPage extends Component{
   constructor(props){
     super(props);
 this.state = {
   email: '',
   password: '',
-  firstName: '',
-  lastName: ''
+  first_name: '',
+  last_name: ''
   }
 }
 render(){
@@ -47,32 +47,31 @@ render(){
 
       {/* form for password repeat*/}
 
-      {/* form for firstName*/}
+      {/* form for first_name*/}
       <View style = {styles.formItemStyle}>
       <Text style = {styles.formLabelStyle}> First Name: </Text>
       <TextInput
         placeholder = "Enter first name"
         style = {styles.formInputStyle}
-        onChangeText = {(firstName) =>this.setState({firstName})}
-        value={this.state.firstName}
+        onChangeText = {(first_name) =>this.setState({first_name})}
+        value={this.state.first_name}
         />
       </View>
 
-      {/* form for lastname*/}
       <View style = {styles.formItemStyle}>
       <Text style = {styles.formLabelStyle}> Surname: </Text>
       <TextInput
         placeholder = "Enter last name"
         style = {styles.formInputStyle}
-        onChangeText = {(lastName) =>this.setState({lastName})}
-        value={this.state.lastName}
+        onChangeText = {(last_name) =>this.setState({last_name})}
+        value={this.state.last_name}
         />
       </View>
       <View>
       <Button
       title = "Register"
       color="#f194ff"
-      onPress={register}
+      onPress={()=>{this.registerFunction()}}
       />
       </View>
       </ScrollView>
@@ -81,15 +80,33 @@ render(){
   );
 }
 
-function register() {
-//contact database and register with this.state..... information from user
+registerFunction(){
+  console.log("register attempted")
 
-  //redirect to login page - maybe with callback/wait here
-  return(
-    onPress={() => navigation.navigate('LoginPage')}
-  );
+  const params = {
+    first_name: this.state.first_name,
+    last_name: this.state.last_name,
+    email: this.state.email,
+    password: this.state.password
+  }
+
+  return fetch('http://10.0.2.2:3333/api/1.0.0/user',{
+    method: 'POST',
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(params)
+})
+  .then((response) =>{
+    if (response.status === 201){
+      Alert.alert("Sign up succesful!", "Welcome! ")
+      return response.JSON()
+    } else {
+      Alert.alert("error!")
+    }
+  })
 }
+
 }
+
 
 
 
@@ -115,7 +132,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   formItemStyle:{
-    flex: 1
+    flex: 1,
     padding:10
   },
   formLabelStyle:{
@@ -140,4 +157,3 @@ const styles = StyleSheet.create({
 })
 
 
-export default RegistrationPage;

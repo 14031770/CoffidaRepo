@@ -1,8 +1,9 @@
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
-import {View, StyleSheet, Button, Text, TextInput, TouchableOpacity } from 'react-native';
+import {View, StyleSheet, Button, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-class LoginPage extends Component{
+export default class LoginPage extends Component{
   constructor(props){
     super(props);
 this.state = {
@@ -10,16 +11,21 @@ this.state = {
   password: ''
   }
 }
-{/* */}
+
   render(){
 
     const navigation = this.props.navigation;
 
     return(
-      {/* //page view with colour*/}
+    //  {/* //page view with colour*/}
       <View style = {styles.pageViewStyle}>
+
+
       {/* //title*/}
         <Text style = {styles.titleStyle}> -Coffida- </Text>
+
+
+
         {/* //form for Login name*/}
         <View style = {styles.formItemStyle}>
         <Text style = {styles.formLabelStyle}> Login Email: </Text>
@@ -27,9 +33,9 @@ this.state = {
           placeholder = "Enter Login name"
           style = {styles.formInputStyle}
           onChangeText = {(loginName) =>this.setState({loginName})}
-          value={this.state.loginName}
-          />
+          value={this.state.loginName}/>
         </View>
+
       {/* //form for password*/}
         <View style = {styles.formItemStyle}>
         <Text style = {styles.formLabelStyle}> Password: </Text>
@@ -38,38 +44,60 @@ this.state = {
 
           style = {styles.formInputStyle}
           onChangeText = {(password) =>this.setState({password})}
-          value={this.state.password}
-          />
+          value={this.state.password}/>
         </View>
+
+
+
         <View>
           <Button
-          title = "Log in"
-          onPress={attemptLogin}
-          />
-          <Button
-          title = "Register"
+          title = "Login"
           color="#f194ff"
-          onPress={() => navigation.navigate('RegistrationPage')}
-          />
+          onPress={() => (this.attemptLogin())} />
           </View>
+          <Button title="Register"
+            onPress={()=>{this.props.navigation.navigate("RegistrationPage")}}    
+          />
       </View>
     );
   }
 
-  function attemptLogin() {
+  attemptLogin() {
+    const navigation = this.props.navigation;
+
+    console.log("login attempted")
     let attemptSuccess = false;
     {/* //contact database with this.state.loginName and this.state.password*/}
+    let email = this.state.loginName;
+    let password = this.state.password;
 
-
-    {/* //get password from database and compare to input (this.state.password) and alter attemptSuccess
-    //return session token and user id*/}
-    if(attemptSuccess){
-      navigation.navigate('MainPage');
-    }
+    return fetch('http://10.0.2.2:3333/api/1.0.0/user/login',{
+      method: 'POST',
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+    .then((response)=>{
+      if (response.status === 200){
+        Alert.alert("Welcome", "Success!")
+        return response.json()
+      } else {
+        Alert.alert("incorrect details")
+      }
+    })
+    /* store the session token with async storage */
+    .then(async (responseJson) => {
+      console.log(responseJson.id)
+      await AsyncStorage.setItem("@session_token", String(responseJson.token));
+      navigation.navigate("MainPage")
+    })
   }
 }
 
-}
+
+
 
 const styles = StyleSheet.create({
   pageViewStyle: {
@@ -93,7 +121,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   formItemStyle:{
-    flex: 1
+    flex: 1,
     padding:10
   },
   formLabelStyle:{
@@ -120,4 +148,4 @@ const styles = StyleSheet.create({
   //formtouch text
 })
 
-export default LoginPage;
+
